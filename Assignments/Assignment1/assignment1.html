@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Assignment 1</title>
+</head>
+
+<body>
+    <h3>CMPS-3360 Assignment 1</h3>
+    <span>Alex Olteanu and Sebastian Salazar</span>
+    <hr />
+
+    <script>
+        var data = [10, 8, 13, 9, 11, 14, 6, 4, 12, 7, 5];
+    </script>
+
+    <div>
+        <h2> 1a. Bar Chart </h2>
+        <svg id="Bar" width="300" height="200">
+            <!-- Here is how you'd set a background rectangle programmatically with javascript. Useful but not necessary for this assignment -->
+            <script>
+                var svg = document.getElementById("Bar");
+                var newElement = document.createElementNS("http://www.w3.org/2000/svg", 'rect'); //Create a path in SVG's namespace
+                newElement.setAttribute("x", "0");
+                newElement.setAttribute("y", "0");
+                newElement.setAttribute("width", "300");
+                newElement.setAttribute("height", "200");
+                newElement.style.fill = "white"; //Set stroke colour
+                newElement.style.stroke = "#000000"; //Set stroke colour
+                newElement.style.strokeWidth = "1px"; //Set stroke width
+                svg.appendChild(newElement);
+            </script>
+
+            <g transform="translate(0, 200) scale(1, -1)">
+                <rect x="40" y="2" width="15" height="100" style="fill:red; stroke:black; stroke-width:2px" />
+                <rect x="60" y="2" width="15" height="80" style="fill:red; stroke:black; stroke-width:2px" />
+                <rect x="80" y="2" width="15" height="130" style="fill:red; stroke:black; stroke-width:2px" />
+                <rect x="100" y="2" width="15" height="90" style="fill:red; stroke:black; stroke-width:2px" />
+                <rect x="120" y="2" width="15" height="110" style="fill:red; stroke:black; stroke-width:2px" />
+                <rect x="140" y="2" width="15" height="140" style="fill:red; stroke:black; stroke-width:2px" />
+                <rect x="160" y="2" width="15" height="60" style="fill:red; stroke:black; stroke-width:2px" />
+                <rect x="180" y="2" width="15" height="40" style="fill:red; stroke:black; stroke-width:2px" />
+                <rect x="200" y="2" width="15" height="120" style="fill:red; stroke:black; stroke-width:2px" />
+                <rect x="220" y="2" width="15" height="70" style="fill:red; stroke:black; stroke-width:2px" />
+                <rect x="240" y="2" width="15" height="50" style="fill:red; stroke:black; stroke-width:2px" />
+            </g>
+
+            <line class="lines" x1="33" y1="0" x2="33" y2="200" stroke="black" />
+
+            <text x="11.5" y="198">2</text>
+            <text x="11.5" y="178">4</text>
+            <text x="11.5" y="158">6</text>
+            <text x="11.5" y="138">8</text>
+            <text x="11.5" y="118">10</text>
+            <text x="11.5" y="98">12</text>
+            <text x="11.5" y="78">14</text>
+            <text x="11.5" y="58">16</text>
+            <text x="11.5" y="38">18</text>
+            <text x="11.5" y="18">20</text>
+        </svg>
+    </div>
+
+    <div>
+        <h2>1b. Line Chart</h2>
+        <svg id="Line" width="300" height="200">
+            <script>
+                var svg = document.getElementById("Line");
+                var newElement = document.createElementNS("http://www.w3.org/2000/svg", 'rect'); //Create a path in SVG's namespace
+                newElement.setAttribute("x", "0");
+                newElement.setAttribute("y", "0");
+                newElement.setAttribute("width", "300");
+                newElement.setAttribute("height", "200");
+                newElement.style.fill = "white"; //Set stroke colour
+                newElement.style.stroke = "#000000"; //Set stroke colour
+                newElement.style.strokeWidth = "1px"; //Set stroke width
+                svg.appendChild(newElement);
+            </script>
+
+            <g transform="translate(0, 200) scale(1, -1)">
+                <polyline points="40,100 60,80 80,130 100,90 120,110 140,140 160,60 180,40 200,120 220,70 240,50"
+                    style="fill:none; stroke:blue; stroke-width:2px" />
+            </g>
+
+            <line class="lines" x1="33" y1="0" x2="33" y2="200" stroke="black" />
+
+            <text x="11.5" y="198">2</text>
+            <text x="11.5" y="178">4</text>
+            <text x="11.5" y="158">6</text>
+            <text x="11.5" y="138">8</text>
+            <text x="11.5" y="118">10</text>
+            <text x="11.5" y="98">12</text>
+            <text x="11.5" y="78">14</text>
+            <text x="11.5" y="58">16</text>
+            <text x="11.5" y="38">18</text>
+            <text x="11.5" y="18">20</text>
+
+            <line class="lines" x1="33" y1="0" x2="33" y2="200" stroke="black" />
+        </svg>
+    </div>
+
+    <div>
+        <script src="scores.js" charset="utf-8"></script>
+
+        <h2>2a. Scatterplot</h2>
+
+        <svg id="Scatter" width="300" height="200">
+            <script>
+                var svg = document.getElementById("Scatter");
+                var newElement = document.createElementNS("http://www.w3.org/2000/svg", 'rect'); //Create a path in SVG's namespace
+                newElement.setAttribute("x", "0");
+                newElement.setAttribute("y", "0");
+                newElement.setAttribute("width", "300");
+                newElement.setAttribute("height", "200");
+                newElement.style.fill = "white"; //Set stroke colour
+                newElement.style.stroke = "#000000"; //Set stroke colour
+                newElement.style.strokeWidth = "1px"; //Set stroke width
+                svg.appendChild(newElement);
+
+                <!-- Create scatterplot of scores using the vales in scores.js
+                X-axis = SATM
+                Y-axis = SATV
+                Dot radius = ACT
+                Color = GPA -->
+
+                var i = 0;
+                for (i in scores) {
+                    let x = scores[i].SATM;
+                    let y = scores[i].SATV;
+                    let r = scores[i].ACT / 10;
+                    let g = scores[i].GPA;
+                    let point = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+
+                    maxX = Math.max.apply(Math, scores.map(function (o) { return o.SATM; }))
+                    maxY = Math.max.apply(Math, scores.map(function (o) { return o.SATV; }))
+
+                    minX = Math.min.apply(Math, scores.map(function (o) { return o.SATM; }))
+                    minY = Math.min.apply(Math, scores.map(function (o) { return o.SATV; }))
+
+                    xScale = 300 / (maxX - minX);
+                    yScale = 200 / (maxY - minY);
+
+                    xScaled = xScale * (x - minX);
+                    yScaled = 200 - (yScale * (y - minY));
+
+                    point.setAttribute("cx", xScaled);
+                    point.setAttribute("cy", yScaled);
+                    point.setAttribute("r", r);
+
+                    maxGPA = Math.max.apply(Math, scores.map(function (o) { return o.GPA; }))
+                    minGPA = Math.min.apply(Math, scores.map(function (o) { return o.GPA; }))
+
+                    let color = "rgb(" + (1 - (g - minGPA) / (maxGPA - minGPA)) * 255 + "," + (g - minGPA) * 255 / (maxGPA - minGPA) + ",0)";
+                    point.style.fill = color;
+                    
+                        svg.appendChild(point)
+                }
+            </script>
+        </svg>
+
+    </div>
+
+    <div>
+        <h2>2b. Color Justification</h2>
+        <p>
+            We used a color scale where red represents a low GPA and green represents a high GPA. These values are relative to the other values in the dataset. We selected a red-green color scale with varying color value because of social connotation and the type GPA of the data. It is perceived that green is good and red is trouble. To represent high GPAs, we believe it is appropriate to have green and red to represent the lower ones. We used the value of the color to describe changes in the qualitative nature of the attribute. 
+
+            Challenges to this color scale are red and green color blindness, were someone with Deuteranopia or Protanopia would struggle to interpret the GPA variable in the scatter plot.
+            
+        </p>
+
+        <h2>2c. Visualization Critique</h2>
+        <p>
+            Our visualization is okay, but we had trouble scaling data to fit the graph. For example, the smallest values are not 0, instead they are simply the smallest values in the dataset. Furthermore, because of the way we scaled the data to fit the dimensions of the SVG, the minimum and maximum values for whatever axis will rest directly on top of the borderline. This makes it difficult to fully see outliers in the dataset. This could be potentially remedied by standardizing the data to fit a slightly smaller scale than the pixel parameters of the SVG.
+    </div>
+</body>
+
+</html>
